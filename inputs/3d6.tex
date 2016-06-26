@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}% Bruce Burlton / hv 2005-01-08
+\usepackage{amsmath,amssymb}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{multido}
+\usepackage[nomessages]{fp}
+%\usepackage{pstfp}
+\usepackage{pstricks,pst-3dplot}% pst-3dplot v>=1.54 (http://perce.de/LaTeX/pst-3dplot)
+
+\newpsstyle{above}{linewidth=1.2pt}
+\newpsstyle{below}{linewidth=0.3pt}
+\def\pstyle{}
+%
+\def\td{57.29578}%
+
+\def\major{4}\def\minor{3}%  semi major and minor axes
+\FPeval\ECC{(major*major-minor*minor)^(.5)/major}%  eccentricity
+%\FPset\ECC{0.6614}%
+\FPeval\Num{major*(1-ECC*ECC)}% numerator of radius function
+%\FPset\Num{2.2502}%
+\FPeval\Ra{major*(1+ECC)}% apogee radius
+%\FPset\Ra{4.6614}%
+\FPeval\Rp{major*(1-ECC)}% perigee radius
+%\FPset\Rp{1.3544}%
+\def\Inc{-30}\def\Node{225}\def\perg{30}% inclination, Node and arg. of perigee definitions
+\def\xVal{}\def\yVal{}\def\zVal{0}\def\xValold{0}\def\yValold{0}\def\zValold{0}%
+\def\xTemp{}\def\yTemp{}\def\zTemp{}\def\tempa{}\def\tempb{}\def\tempc{}\def\temp{}%
+\def\Temp{}%
+
+\begin{document}
+%
+  \begin{pspicture}(-5,-4)(5,4)%
+    \psset{Alpha=155}%
+    \pstThreeDCoor[xMin=0,yMin=0,zMin=0]%  inertial frame
+    \pstUThreeDPut[270](4,0,0){$\Upsilon$}%
+    \pstThreeDSphere[linecolor=blue,linewidth=.3pt](0,0,0){1}%  draw "earth"
+    \pstThreeDCircle(0,0,0)(1,0,0)(0,1,0)%  draw equator
+    \pstThreeDCircle[linestyle=dotted](0,0,0)(\Rp,0,0)(0,\Rp,0)%  draw equatorial plane
+    \pstThreeDCircle[linestyle=dotted](0,0,0)(4,0,0)(0,4,0)%  draw equatorial plane
+    \pstThreeDCircle[linestyle=dotted](0,0,0)(\Ra,0,0)(0,\Ra,0)%  draw equatorial plane
+    \pstThreeDCircle[linestyle=dotted](0,0,0)(5.3,0,0)(0,5.3,0)%  draw equatorial plane
+    \pstThreeDCircle[linestyle=dotted](0,0,0)(2.5,0,0)(0,2.5,0)%  draw equatorial plane
+    \pstRotPointIIID[RotX=\Inc](0,0,6){\xVal}{\yVal}{\zVal}% orbit normal vector, about x (inc)
+    \pstRotPointIIID[RotZ=\Node](\xVal,\yVal,\zVal){\hx}{\hy}{\hz}%  about z (node)
+    \pstThreeDLine[SphericalCoor=true,linestyle=dashed,arrows=->](0,0,0)(7,45,0)% line of nodes
+    \pstThreeDLine[linecolor=brown,arrows=->](0,0,0)(\hx,\hy,\hz)%  draw orbit normal vector
+%  initialize orbit plot
+    \FPeval\xVal{Num/(1+ECC)}% initialize x
+    \FPadd\temp{1}\ECC%
+    \FPdiv\xVal\Num\temp%
+    \FPset\yVal{0.}%
+    \pstRotPointIIID[RotZ=\perg](\xVal,\yVal,0){\tempa}{\tempb}{\tempc}%  about z (omega)
+    \pstRotPointIIID[RotX=\Inc](\tempa,\tempb,\tempc){\xTemp}{\yTemp}{\zTemp}%  about x (inc)
+    \pstRotPointIIID[RotZ=\Node](\xTemp,\yTemp,\zTemp){\xValold}{\yValold}{\zValold}%  about z (node)
+    \pstThreeDLine[linecolor=green,arrows=->](0,0,0)(\xValold,\yValold,\zValold)% perigee vector
+    \pstThreeDNode(\xValold,\yValold,\zValold){Perigee}
+    \uput[180](Perigee){Perigee}%  label perigee
+%  main loop, eval orbit coords (x,y) in orbit plane, then rotate (x,y,0) to inertial
+%    \FPdebugtrue
+    \Multido{\ia=0+1}{360}{%
+      \FPdiv\temp\ia\td
+      \FPsincos\tempb\tempc\temp
+% r, in the orbit plane
+      \FPmul\temp\ECC\tempc
+      \FPadd\temp\temp{1}
+      \FPdiv\tempa\Num\temp
+      \FPmul\xVal\tempa\tempc% x, in the orbit plane
+      \FPmul\yVal\tempa\tempb% y, in the orbit plane
+% rotate it to the inertial frame
+      \pstRotPointIIID[RotZ=\perg](\xVal,\yVal,0){\tempa}{\tempb}{\tempc}%  about z (omega)
+      \pstRotPointIIID[RotX=\Inc](\tempa,\tempb,\tempc){\xTemp}{\yTemp}{\zTemp}%  about x (inc)
+      \pstRotPointIIID[RotZ=\Node](\xTemp,\yTemp,\zTemp){\xVal}{\yVal}{\zVal}%  about z (node)
+      \dimen0=\zVal pt
+      \FPifgt{\number\dimen0}{0} \let\pstyle\above \else \let\pstyle\below \fi
+      \pstThreeDLine(\xValold,\yValold,\zValold)(\xVal,\yVal,\zVal)%
+      \let\xValold\xVal\let\yValold\yVal\let\zValold\zVal%
+    }% end of multido
+    \pstThreeDNode[SphericalCoor=true](\Ra,45,0){LN}%
+    \uput[270](LN){Line of nodes}%
+    \uput{20pt}[50](LN){$i$}%
+
+    \pstThreeDLine[arrows=->,linecolor=green](0,0,0)(-2.868,-0.189,0.86)%  draw radius
+    \pstThreeDPut(-2.868,-0.189,0.86){\pstThreeDLine[arrows=->,linecolor=green]%
+       (0,0,0)(0.5,-0.866,0)}%  draw velocity
+    \pstThreeDCircle[arrows=->,linecolor=brown,beginAngle=180,endAngle=135]%
+       (0,0,0)(3.25,0,0)(0,3.25,0)%  draw node arc
+    \pstThreeDPut[SphericalCoor=true](3.25,20,0){$\Omega$}%
+    \pstThreeDPut[SphericalCoor=true](2.2,160,0){$\omega$}%   label arg of perigee
+    \pstThreeDPut[SphericalCoor=true](1.95,190,0){$\theta$}%  label anomaly
+    \pstThreeDCircle[arrows=<-,linecolor=brown,beginAngle=0,endAngle=90]%
+       (0,0,0)(.9932,-1.4185,-.9999)(1.6378,1.1472,0)%  draw arg of perigee arc
+    \pstThreeDCircle[arrows=->,linecolor=brown,beginAngle=0,endAngle=-55]%
+       (0,0,0)(.9932,-1.4185,-.9999)(1.6378,1.1472,0)%  draw anomaly arc
+    \pstThreeDCircle[arrows=->,linecolor=brown,beginAngle=0,endAngle=30]%
+       (2.457,1.721,0)(.3442,-.4915,0)(0,0,.6)%  draw inclination arc
+    \pstThreeDNode(-2.868,-0.189,0.86){r}%
+    \uput{12pt}[135](r){$\vec{v}$}%  label velocity
+    \uput[0](0.75,1.25){$\vec{r}$}%  label r
+  \end{pspicture}%
+%
+\end{document}

@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage{blindtext}     
+\usepackage{amsmath}
+\usepackage{ragged2e}
+
+\newcommand{\ir}[1]{_{\mathrm{#1}}}                     
+
+
+\begin{document}
+
+\section{Here it works!}
+
+\emph{\blindtext}
+
+\begin{align}
+G(s) = \frac{i(s)}{u(s)} = \frac{ 1 }{R_{42} + s L_{1984} } \:.
+\end{align}
+
+
+\section{Here everything gets screwed up!}
+
+\begin{align}
+G(s) = \frac{i(s)}{u(s)} = \frac{ 1 }{R\ir{Cu} + s L\ir{eff}(s)} \:.
+\end{align}
+
+\section{Here it doesn't work}
+
+\emph{\blindtext}
+
+
+\end{document}

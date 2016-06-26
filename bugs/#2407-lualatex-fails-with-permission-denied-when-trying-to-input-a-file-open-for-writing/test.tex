@@ -1,0 +1,8 @@
+\documentclass[]{article}
+\begin{document}
+blub
+\newwrite\testwrite
+\immediate\openout\testwrite \jobname.brf
+\immediate\write\testwrite{abc}
+\input{\jobname.brf}
+\end{document}
