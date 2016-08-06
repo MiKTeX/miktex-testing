@@ -29,8 +29,11 @@ configure_file(
   COPYONLY
 )
 add_test(tex4ht-2350-htlatex ${MIKTEX_BINARY_DIR}/htlatex mtest "html" " -cunihtf")
-add_test(tex4ht-2350-grep grep "Hallo Welt" mtest.html)
+add_test(tex4ht-2350-mtest-pandoc pandoc mtest.html -o mtest.txt)
+add_test(tex4ht-2350-mtest-okay diff mtest.txt ${CMAKE_CURRENT_SOURCE_DIR}/mtest.good.txt)
 add_test(tex4ht-2350-make4ht ${MIKTEX_BINARY_DIR}/make4ht test "xhtml,charset=utf-8" " -cunihtf -utf8")
+add_test(tex4ht-2350-test-pandoc pandoc test.html -o test.txt)
+add_test(tex4ht-2350-test-okay diff test.txt ${CMAKE_CURRENT_SOURCE_DIR}/test.good.txt)
 
 # SF #2505 htlatex.exe removes quotes
 add_test(tex4ht-2505-htlatex ${MIKTEX_BINARY_DIR}/htlatex mtest "xhtml,ooffice" "ooffice/! -cmozhtf" "-coo -cvalidate")
