@@ -19,12 +19,18 @@
 
 # SF #2350 tex4ht doesn't find fonts in some folders
 configure_file(
-  ${CMAKE_CURRENT_SOURCE_DIR}/mtest.tex
+  "${CMAKE_SOURCE_DIR}/bugs/#2350-tex4ht-doesnt-find-fonts-in-some-folders/mtest.tex"
   mtest.tex
+  COPYONLY
+)
+configure_file(
+  "${CMAKE_SOURCE_DIR}/bugs/#2350-tex4ht-doesnt-find-fonts-in-some-folders/test.tex"
+  test.tex
   COPYONLY
 )
 add_test(tex4ht-2350-htlatex ${MIKTEX_BINARY_DIR}/htlatex mtest "html" " -cunihtf")
 add_test(tex4ht-2350-grep grep "Hallo Welt" mtest.html)
+add_test(tex4ht-2350-make4ht ${MIKTEX_BINARY_DIR}/make4ht test "xhtml,charset=utf-8" " -cunihtf -utf8")
 
 # SF #2505 htlatex.exe removes quotes
 add_test(tex4ht-2505-htlatex ${MIKTEX_BINARY_DIR}/htlatex mtest "xhtml,ooffice" "ooffice/! -cmozhtf" "-coo -cvalidate")
