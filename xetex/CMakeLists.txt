@@ -37,6 +37,8 @@ add_test(xetex-fontspec-lmodern-okay diff --binary fontspec-lmodern-1.png ${CMAK
 
 # SF #2379 File Name Issues with XeLaTeX 3.14159265-2.6-0.99992 (MiKTeX 2.9)
 add_test(xetex-pdf-utf8 ${MIKTEX_BINARY_DIR}/xelatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "Åre_vapen_pdf_utf8.tex")
+add_test(xetex-pdf-utf8-toppm ${MIKTEX_BINARY_DIR}/pdftoppm Åre_vapen_pdf_utf8.pdf Åre_vapen_pdf_utf8)
+add_test(xetex-pdf-utf8-topng convert -strip Åre_vapen_pdf_utf8-1.ppm Åre_vapen_pdf_utf8-1.png)
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
 add_test(xetex-2407-xelatex ${MIKTEX_BINARY_DIR}/xelatex "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
