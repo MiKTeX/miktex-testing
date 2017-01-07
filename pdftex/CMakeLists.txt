@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -23,7 +23,10 @@ add_test(pdftex-sample2e-topng convert -strip sample2e-1.ppm sample2e-1.png)
 add_test(pdftex-sample2e-okay diff --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
 
 add_test(pdftex-spacy-filename ${MIKTEX_BINARY_DIR}/pdflatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" --recorder "a b c")
-add_test(pdftex-8-3-filename ${MIKTEX_BINARY_DIR}/pdflatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "ABC~1.TEX")
+
+if(EXISTS "${CMAKE_SOURCE_DIR}/inputs/ABC~1.TEX")
+  add_test(pdftex-8-3-filename ${MIKTEX_BINARY_DIR}/pdflatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "ABC~1.TEX")
+endif()
 
 # SF #1940 tex: wrong \jobname if filename contains a dot 
 add_test(pdftex-filename-with-dot ${MIKTEX_BINARY_DIR}/pdflatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "sample.2e.tex")
