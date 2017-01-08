@@ -47,3 +47,6 @@ add_test(xetex-2407-xelatex ${MIKTEX_BINARY_DIR}/xelatex "${CMAKE_SOURCE_DIR}/bu
 add_test(xetex-2565-xelatex ${MIKTEX_BINARY_DIR}/xelatex.exe -aux-directory=auxfiles -output-directory=outfiles --synctex=1 sample2e.tex)
 add_test(xetex-2565-auxfiles md5sum auxfiles/sample2e.aux auxfiles/sample2e.log)
 add_test(xetex-2565-outfiles md5sum outfiles/sample2e.pdf outfiles/sample2e.synctex.gz)
+
+# SF #2563 Incompatibiliy between blindtext and listings(tcolorbox)/hyperref
+add_test(xetex-2563-xelatex ${MIKTEX_BINARY_DIR}/xelatex "${CMAKE_SOURCE_DIR}/bugs/#2563-incompatibiliy-between-blindtext-and-listings(tcolorbox)-hyperref/test.tex")
