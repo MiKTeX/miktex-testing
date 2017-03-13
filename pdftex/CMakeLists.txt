@@ -50,3 +50,6 @@ add_test(pdftex-2427-pdflatex ${MIKTEX_BINARY_DIR}/pdflatex "--include-directory
 
 # SF #2493 pdfcsplain broken
 add_test(pdftex-2493-pdfcsplain ${MIKTEX_BINARY_DIR}/pdfcsplain "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "pdfuni-article.tex")
+
+# SF #2570 pdflatex doesn't ignore BOM (byte order mark) 
+add_test(pdftex-2493-pdflatex ${MIKTEX_BINARY_DIR}/pdflatex "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "utf8bom.tex")
