@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -17,27 +17,5 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-cmake_minimum_required(VERSION 3.2.1 FATAL_ERROR)
-
-project(miktex-testing)
-
-enable_testing()
-
-if (NOT MIKTEX_BINARY_DIR)
-  message(FATAL_ERROR "MIKTEX_BINARY_DIR is not set.")
-endif()
-
-add_test(initexmf-report ${MIKTEX_BINARY_DIR}/initexmf --report)
-
-add_subdirectory(makeindex)
-add_subdirectory(ps2pk)
-add_subdirectory(dvips)
-add_subdirectory(dvisvgm)
-add_subdirectory(pdftex)
-add_subdirectory(luatex)
-add_subdirectory(xetex)
-add_subdirectory(tex4ht)
-add_subdirectory(chunkdib)
-add_subdirectory(bibtex)
-add_subdirectory(synctex)
-add_subdirectory(epstopdf)
+add_test(epstopdf-simple ${MIKTEX_BINARY_DIR}/miktex-epstopdf test-simple.eps)
+add_test(epstopdf-simple-pdfinfo test-simple.pdf)
