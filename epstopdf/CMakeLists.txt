@@ -17,5 +17,10 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-add_test(epstopdf-simple ${MIKTEX_BINARY_DIR}/miktex-epstopdf test-simple.eps)
-add_test(epstopdf-simple-pdfinfo ${MIKTEX_BINARY_DIR}/pdfinfo test-simple.pdf)
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/test-simple.eps"
+  test.eps
+  COPYONLY
+)
+add_test(epstopdf-simple ${MIKTEX_BINARY_DIR}/miktex-epstopdf test.eps)
+add_test(epstopdf-simple-pdfinfo ${MIKTEX_BINARY_DIR}/pdfinfo test.pdf)
