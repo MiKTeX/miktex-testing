@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -31,7 +31,7 @@ add_test(
     ${CMAKE_BINARY_DIR}
 )
 
-add_test(luatex-spacy-filename ${MIKTEX_BINARY_DIR}/lualatex "${CMAKE_SOURCE_DIR}/inputs/a b c")
+add_test(luatex-spacy-filename ${MIKTEX_BINARY_DIR}/lualatex "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "a b c")
 
 #add_test(luatex-jpeg lualatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
 #add_test(luatex-jpeg-toppm ${MIKTEX_BINARY_DIR}/pdftoppm jpeg.pdf jpeg)
