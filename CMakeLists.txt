@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -24,8 +24,26 @@ project(miktex-testing)
 enable_testing()
 
 if (NOT MIKTEX_BINARY_DIR)
-  message(FATAL_ERROR "MIKTEX_BINARY_DIR is not set.")
+  find_program(MIKTEX_PDFTEX_EXECUTABLE NAMES miktex-pdftex)
+  get_filename_component(MIKTEX_BINARY_DIR ${MIKTEX_PDFTEX_EXECUTABLE} DIRECTORY CACHE)
 endif()
+
+set(required_programs
+  convert
+  diff
+  gzip
+  md5sum
+  pandoc
+  unzip
+)
+
+foreach(p ${required_programs})
+  string(TOUPPER "${p}" p_u)
+  find_program(${p_u}_EXECUTABLE NAMES ${p})
+  if(NOT ${p_u}_EXECUTABLE)
+    message(FATAL_ERROR "The program ${p} could not be found.")
+  endif()
+endforeach()
 
 add_test(initexmf-report ${MIKTEX_BINARY_DIR}/initexmf --report)
 
