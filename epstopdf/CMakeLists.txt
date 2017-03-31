@@ -22,5 +22,5 @@ configure_file(
   test.eps
   COPYONLY
 )
-add_test(epstopdf-simple ${MIKTEX_BINARY_DIR}/miktex-epstopdf test.eps)
-add_test(epstopdf-simple-pdfinfo ${MIKTEX_BINARY_DIR}/pdfinfo test.pdf)
+add_test(epstopdf-simple ${MIKTEX_EPSTOPDF_EXECUTABLE} test.eps)
+add_test(epstopdf-simple-pdfinfo ${MIKTEX_PDFINFO_EXECUTABLE} test.pdf)

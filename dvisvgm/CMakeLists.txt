@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -17,8 +17,8 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-add_test(dvisvgm-sample2e-latex ${MIKTEX_BINARY_DIR}/latex --quiet sample2e)
-add_test(dvisvgm-sample2e-dvisvgm-all-pages ${MIKTEX_BINARY_DIR}/dvisvgm --page=1- sample2e.dvi)
+add_test(dvisvgm-sample2e-latex ${MIKTEX_LATEX_EXECUTABLE} --quiet sample2e)
+add_test(dvisvgm-sample2e-dvisvgm-all-pages ${MIKTEX_DVISVGM_EXECUTABLE} --page=1- sample2e.dvi)
 
-add_test(dvisvgm-pstricks-latex ${MIKTEX_BINARY_DIR}/latex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" 3d6.tex)
-add_test(dvisvgm-pstricks-dvisvgm ${MIKTEX_BINARY_DIR}/dvisvgm 3d6.dvi)
+add_test(dvisvgm-pstricks-latex ${MIKTEX_LATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" 3d6.tex)
+add_test(dvisvgm-pstricks-dvisvgm ${MIKTEX_DVISVGM_EXECUTABLE} 3d6.dvi)

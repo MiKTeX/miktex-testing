@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -17,5 +17,5 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-add_test(makeindex-run ${MIKTEX_BINARY_DIR}/makeindex -t t.log -o t.ind ${CMAKE_CURRENT_SOURCE_DIR}/t.idx)
-add_test(makeindex-diff diff t.ind ${CMAKE_CURRENT_SOURCE_DIR}/t.ind.ref)
+add_test(makeindex-run ${MIKTEX_MAKEINDEX_EXECUTABLE} -t t.log -o t.ind ${CMAKE_CURRENT_SOURCE_DIR}/t.idx)
+add_test(makeindex-diff ${DIFF_EXECUTABLE} t.ind ${CMAKE_CURRENT_SOURCE_DIR}/t.ind.ref)

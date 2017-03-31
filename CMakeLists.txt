@@ -28,12 +28,31 @@ if (NOT MIKTEX_BINARY_DIR)
   get_filename_component(MIKTEX_BINARY_DIR ${MIKTEX_PDFTEX_EXECUTABLE} DIRECTORY CACHE)
 endif()
 
+set(MIKTEX_BIBTEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-bibtex)
+set(MIKTEX_DVIPS_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-dvips)
+set(MIKTEX_DVISVGM_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-dvisvgm)
+set(MIKTEX_EPSTOPDF_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-epstopdf)
+set(MIKTEX_HTLATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/htlatex)
+set(MIKTEX_INITEXMF_EXECUTABLE ${MIKTEX_BINARY_DIR}/initexmf)
+set(MIKTEX_LATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-latex)
+set(MIKTEX_LUALATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-lualatex)
+set(MIKTEX_MAKE4HT_EXECUTABLE ${MIKTEX_BINARY_DIR}/make4ht)
+set(MIKTEX_MAKEINDEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-makeindex)
+set(MIKTEX_MPOST_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-mpost)
+set(MIKTEX_PDFINFO_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdfinfo)
+set(MIKTEX_PDFLATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdflatex)
+set(MIKTEX_PDFTEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdftex)
+set(MIKTEX_PDFTOPPM_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdftoppm)
+set(MIKTEX_PS2PK_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-ps2pk)
+set(MIKTEX_XELATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-xelatex)
+
 set(required_programs
   convert
   diff
   gzip
   md5sum
   pandoc
+  touch
   unzip
 )
 
@@ -45,7 +64,7 @@ foreach(p ${required_programs})
   endif()
 endforeach()
 
-add_test(initexmf-report ${MIKTEX_BINARY_DIR}/initexmf --report)
+add_test(initexmf-report ${MIKTEX_INITEXMF_EXECUTABLE} --report)
 
 add_subdirectory(makeindex)
 add_subdirectory(ps2pk)

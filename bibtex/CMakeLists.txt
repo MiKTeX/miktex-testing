@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -23,4 +23,4 @@ configure_file(
   utf8-test.aux
   COPYONLY
 )
-add_test(bibtex-2410 ${MIKTEX_BINARY_DIR}/bibtex utf8-test)
+add_test(bibtex-2410 ${MIKTEX_BIBTEX_EXECUTABLE} utf8-test)

@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -18,5 +18,5 @@
 ## USA.
 
 # SF #2503 synxtex error with unicode filename
-add_test(synctex-2503-pdflatex ${MIKTEX_BINARY_DIR}/pdflatex --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" --synctex=1 tèst.tex)
-add_test(synctex-2503-gunzip gzip --decompress --stdout tèst.synctex.gz)
+add_test(synctex-2503-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" --synctex=1 tèst.tex)
+add_test(synctex-2503-gunzip ${GZIP_EXECUTABLE} --decompress --stdout tèst.synctex.gz)

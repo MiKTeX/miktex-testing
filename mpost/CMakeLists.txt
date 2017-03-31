@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -23,4 +23,4 @@ configure_file(
   test.mp
   COPYONLY
 )
-add_test(mpost-2449-mpost ${MIKTEX_BINARY_DIR}/mpost test.mp)
+add_test(mpost-2449-mpost ${MIKTEX_MPOST_EXECUTABLE} test.mp)
