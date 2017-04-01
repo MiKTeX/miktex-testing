@@ -18,7 +18,7 @@
 ## USA.
 
 add_test(luatex-sample2e ${MIKTEX_LUALATEX_EXECUTABLE} sample2e)
-add_test(luatex-sample2e-toppm ${MIKTEX_PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
+add_test(luatex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
 add_test(luatex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
 add_test(luatex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
 
@@ -34,13 +34,13 @@ add_test(
 add_test(luatex-spacy-filename ${MIKTEX_LUALATEX_EXECUTABLE} "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "a b c")
 
 #add_test(luatex-jpeg ${MIKTEX_LUALATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
-#add_test(luatex-jpeg-toppm ${MIKTEX_PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
+#add_test(luatex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
 #add_test(luatex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
 #add_test(luatex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
 
 # SF #2361 Bug in lualatex with ragged2e package and \mathrm fixed 
 add_test(luatex-2361-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2361-bug-in-lualatex-with-ragged2e-package-and-mathrm-fixed/2361.tex")
-add_test(luatex-2361-toppm ${MIKTEX_PDFTOPPM_EXECUTABLE} 2361.pdf 2361)
+add_test(luatex-2361-toppm ${PDFTOPPM_EXECUTABLE} 2361.pdf 2361)
 add_test(luatex-2361-topng ${CONVERT_EXECUTABLE} -strip 2361-1.ppm 2361-1.png)
 add_test(luatex-2361-okay ${DIFF_EXECUTABLE} --binary 2361-1.png ${CMAKE_CURRENT_SOURCE_DIR}/2361-1.png)
 

@@ -23,28 +23,58 @@ project(miktex-testing)
 
 enable_testing()
 
-if (NOT MIKTEX_BINARY_DIR)
-  find_program(MIKTEX_PDFTEX_EXECUTABLE NAMES miktex-pdftex)
-  get_filename_component(MIKTEX_BINARY_DIR ${MIKTEX_PDFTEX_EXECUTABLE} DIRECTORY CACHE)
+if(MIKTEX_BINARY_DIR)
+  set(bindir_guess ${MIKTEX_BINARY_DIR})
+elseif(WIN32)
+  set(bindir_guess "C:/Program Files/MiKTeX 2.9")
+else()
+  set(bindir_guess "/usr/local/bin")
 endif()
 
-set(MIKTEX_BIBTEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-bibtex)
-set(MIKTEX_DVIPS_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-dvips)
-set(MIKTEX_DVISVGM_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-dvisvgm)
-set(MIKTEX_EPSTOPDF_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-epstopdf)
-set(MIKTEX_HTLATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/htlatex)
-set(MIKTEX_INITEXMF_EXECUTABLE ${MIKTEX_BINARY_DIR}/initexmf)
-set(MIKTEX_LATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-latex)
-set(MIKTEX_LUALATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-lualatex)
-set(MIKTEX_MAKE4HT_EXECUTABLE ${MIKTEX_BINARY_DIR}/make4ht)
-set(MIKTEX_MAKEINDEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-makeindex)
-set(MIKTEX_MPOST_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-mpost)
-set(MIKTEX_PDFINFO_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdfinfo)
-set(MIKTEX_PDFLATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdflatex)
-set(MIKTEX_PDFTEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdftex)
-set(MIKTEX_PDFTOPPM_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-pdftoppm)
-set(MIKTEX_PS2PK_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-ps2pk)
-set(MIKTEX_XELATEX_EXECUTABLE ${MIKTEX_BINARY_DIR}/miktex-xelatex)
+set(miktex_executables
+  initexmf
+  miktex-bibtex
+  miktex-dvips
+  miktex-dvisvgm
+  miktex-epstopdf
+  miktex-latex
+  miktex-lualatex
+  miktex-makeindex
+  miktex-mpost
+  miktex-pdflatex
+  miktex-pdftex
+  miktex-ps2pk
+  miktex-xelatex
+)
+
+foreach(exe ${miktex_executables})
+  string(REPLACE "-" "_" exe_ "${exe}")
+  string(TOUPPER "${exe_}" EXE)
+  find_program(${EXE}_EXECUTABLE
+    NAMES ${exe}
+    PATHS ${bindir_guess}
+  )
+  if(NOT ${EXE}_EXECUTABLE)
+    message(FATAL_ERROR "The MiKTeX executable ${exe} does no exist.")
+  endif()
+endforeach()
+
+set(script_wrappers
+  htlatex
+  make4ht
+)
+
+set(nodist_executables
+  chunkdib
+)
+
+foreach(exe ${script_wrappers} ${nodist_executables})
+  string(TOUPPER "${exe}" EXE)
+  find_program(${EXE}_EXECUTABLE
+    NAMES ${exe}
+    PATHS ${bindir_guess}
+  )
+endforeach()
 
 set(required_programs
   convert
@@ -52,19 +82,24 @@ set(required_programs
   gzip
   md5sum
   pandoc
+  pdfinfo
+  pdftoppm
   touch
   unzip
 )
 
-foreach(p ${required_programs})
-  string(TOUPPER "${p}" p_u)
-  find_program(${p_u}_EXECUTABLE NAMES ${p})
-  if(NOT ${p_u}_EXECUTABLE)
-    message(FATAL_ERROR "The program ${p} could not be found.")
+foreach(exe ${required_programs})
+  string(TOUPPER "${exe}" EXE)
+  find_program(${EXE}_EXECUTABLE
+    NAMES ${exe}
+    PATHS ${bindir_guess}
+  )
+  if(NOT ${EXE}_EXECUTABLE)
+    message(FATAL_ERROR "The program ${exe} could not be found.")
   endif()
 endforeach()
 
-add_test(initexmf-report ${MIKTEX_INITEXMF_EXECUTABLE} --report)
+add_test(initexmf-report ${INITEXMF_EXECUTABLE} --report)
 
 add_subdirectory(makeindex)
 add_subdirectory(ps2pk)
@@ -73,8 +108,12 @@ add_subdirectory(dvisvgm)
 add_subdirectory(pdftex)
 add_subdirectory(luatex)
 add_subdirectory(xetex)
-add_subdirectory(tex4ht)
-add_subdirectory(chunkdib)
+if(EXISTS ${HTLATEX_EXECUTABLE})
+  add_subdirectory(tex4ht)
+endif()
+if(EXISTS ${CHUNKDIB_EXECUTABLE})
+  add_subdirectory(chunkdib)
+endif()
 add_subdirectory(bibtex)
 add_subdirectory(synctex)
 add_subdirectory(epstopdf)

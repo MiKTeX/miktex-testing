@@ -18,7 +18,7 @@
 ## USA.
 
 add_test(pdftex-sample2e ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet sample2e)
-add_test(pdftex-sample2e-toppm ${MIKTEX_PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
+add_test(pdftex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
 add_test(pdftex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
 add_test(pdftex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
 
@@ -33,7 +33,7 @@ add_test(pdftex-filename-with-dot ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--inclu
 add_test(pdftex-filename-with-dot-check ${MD5SUM_EXECUTABLE} sample.2e.log)
 
 add_test(pdftex-jpeg ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
-add_test(pdftex-jpeg-toppm ${MIKTEX_PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
+add_test(pdftex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
 add_test(pdftex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
 add_test(pdftex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
 

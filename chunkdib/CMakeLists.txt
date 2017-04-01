@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016 Christian Schenk
+## Copyright (C) 2016-2017 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -17,13 +17,13 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-add_test(chunkdib-latex latex sample2e)
-add_test(chunkdib-png dvipng -D 300 sample2e)
-add_test(chunkdib-bmp convert -flatten sample2e1.png bmp3:sample2e1.bmp)
+add_test(chunkdib-latex ${MIKTEX_LATEX_EXECUTABLE} sample2e)
+add_test(chunkdib-png ${MIKTEX_DVIPNG_EXECUTABLE} -D 300 sample2e)
+add_test(chunkdib-bmp ${CONVERT_EXECUTABLE} -flatten sample2e1.png bmp3:sample2e1.bmp)
 file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/chunks")
 add_test(
   NAME chunkdib-chunks
-  COMMAND ${MIKTEX_BINARY_DIR}/chunkdib ../sample2e1.bmp
+  COMMAND ${CHUNKDIB_EXECUTABLE} ../sample2e1.bmp
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/chunks"
 )
-add_test(chunk-dib-diff diff "${CMAKE_CURRENT_BINARY_DIR}/chunks" "${CMAKE_CURRENT_SOURCE_DIR}/sample2e-300-chunks")
+add_test(chunk-dib-diff ${DIFF_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/chunks" "${CMAKE_CURRENT_SOURCE_DIR}/sample2e-300-chunks")

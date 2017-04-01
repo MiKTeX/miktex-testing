@@ -23,4 +23,4 @@ configure_file(
   COPYONLY
 )
 add_test(epstopdf-simple ${MIKTEX_EPSTOPDF_EXECUTABLE} test.eps)
-add_test(epstopdf-simple-pdfinfo ${MIKTEX_PDFINFO_EXECUTABLE} test.pdf)
+add_test(epstopdf-simple-pdfinfo ${PDFINFO_EXECUTABLE} test.pdf)
