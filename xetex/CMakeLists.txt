@@ -44,7 +44,7 @@ add_test(xetex-pdf-utf8-topng ${CONVERT_EXECUTABLE} -strip Åre_vapen_pdf_utf8-1
 add_test(xetex-2407-xelatex ${MIKTEX_XELATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
 
 # SF #2565 miktex-NAME.exe "-aux-directory=DIR" and "-output-directory=DIR" options suddenly conflict
-add_test(xetex-2565-xelatex ${MIKTEX_XELATEX_EXECUTABLE}.exe -aux-directory=auxfiles -output-directory=outfiles --synctex=1 sample2e.tex)
+add_test(xetex-2565-xelatex ${MIKTEX_XELATEX_EXECUTABLE} -aux-directory=auxfiles -output-directory=outfiles --synctex=1 sample2e.tex)
 add_test(xetex-2565-auxfiles ${MD5SUM_EXECUTABLE} auxfiles/sample2e.aux auxfiles/sample2e.log)
 add_test(xetex-2565-outfiles ${MD5SUM_EXECUTABLE} outfiles/sample2e.pdf outfiles/sample2e.synctex.gz)
 

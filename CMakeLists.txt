@@ -34,6 +34,7 @@ endif()
 set(miktex_executables
   initexmf
   miktex-bibtex
+  miktex-dvipng
   miktex-dvips
   miktex-dvisvgm
   miktex-epstopdf
