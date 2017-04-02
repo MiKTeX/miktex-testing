@@ -23,6 +23,12 @@ project(miktex-testing)
 
 enable_testing()
 
+option(
+  PDF_COMPARE_VISUALLY
+  "Compare resulting PDF files visually with a test reference."
+  FALSE
+)
+
 if(MIKTEX_BINARY_DIR)
   set(bindir_guess ${MIKTEX_BINARY_DIR})
 elseif(WIN32)

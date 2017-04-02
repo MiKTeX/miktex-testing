@@ -20,7 +20,9 @@
 add_test(pdftex-sample2e ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet sample2e)
 add_test(pdftex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
 add_test(pdftex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
-add_test(pdftex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
+if(PDF_COMPARE_VISUALLY)
+  add_test(pdftex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
+endif()
 
 add_test(pdftex-spacy-filename ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" --recorder "a b c")
 
@@ -35,12 +37,16 @@ add_test(pdftex-filename-with-dot-check ${MD5SUM_EXECUTABLE} sample.2e.log)
 add_test(pdftex-jpeg ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
 add_test(pdftex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
 add_test(pdftex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
-add_test(pdftex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
+if(PDF_COMPARE_VISUALLY)
+  add_test(pdftex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
+endif()
 
 # SF #2371 mathchoice in pdftex broken
 add_test(pdftex-2371-touch ${TOUCH_EXECUTABLE} -d "2010-10-10 10:10:10" timestamp)
 add_test(pdftex-2371-pdftex ${MIKTEX_PDFTEX_EXECUTABLE} -job-time=timestamp -output-format=dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.tex")
-add_test(pdftex-2371-okay ${DIFF_EXECUTABLE} --binary test.dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.dvi")
+if(PDF_COMPARE_VISUALLY)
+  add_test(pdftex-2371-okay ${DIFF_EXECUTABLE} --binary test.dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.dvi")
+endif()
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
 add_test(pdftex-2407-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
