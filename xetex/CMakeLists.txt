@@ -19,8 +19,8 @@
 
 add_test(xetex-sample2e ${MIKTEX_XELATEX_EXECUTABLE} --quiet sample2e)
 add_test(xetex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
-add_test(xetex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
 if(PDF_COMPARE_VISUALLY)
+  add_test(xetex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
   add_test(xetex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
 endif()
 
@@ -29,22 +29,24 @@ add_test(xetex-spacy-filename ${MIKTEX_XELATEX_EXECUTABLE} --quiet "--include-di
 
 add_test(xetex-jpeg ${MIKTEX_XELATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
 add_test(xetex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
-add_test(xetex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
 if(PDF_COMPARE_VISUALLY)
+  add_test(xetex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
   add_test(xetex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
 endif()
 
 add_test(xetex-fontspec-lmodern ${MIKTEX_XELATEX_EXECUTABLE} "--include-directory=${CMAKE_SOURCE_DIR}/inputs" fontspec-lmodern.tex)
 add_test(xetex-fontspec-lmodern-toppm ${PDFTOPPM_EXECUTABLE} fontspec-lmodern.pdf fontspec-lmodern)
-add_test(xetex-fontspec-lmodern-topng ${CONVERT_EXECUTABLE} -strip fontspec-lmodern-1.ppm fontspec-lmodern-1.png)
 if(PDF_COMPARE_VISUALLY)
+  add_test(xetex-fontspec-lmodern-topng ${CONVERT_EXECUTABLE} -strip fontspec-lmodern-1.ppm fontspec-lmodern-1.png)
   add_test(xetex-fontspec-lmodern-okay ${DIFF_EXECUTABLE} --binary fontspec-lmodern-1.png ${CMAKE_CURRENT_SOURCE_DIR}/fontspec-lmodern-1.good.png)
 endif()
 
 # SF #2379 File Name Issues with XeLaTeX 3.14159265-2.6-0.99992 (MiKTeX 2.9)
 add_test(xetex-pdf-utf8 ${MIKTEX_XELATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "Åre_vapen_pdf_utf8.tex")
 add_test(xetex-pdf-utf8-toppm ${PDFTOPPM_EXECUTABLE} Åre_vapen_pdf_utf8.pdf Åre_vapen_pdf_utf8)
-add_test(xetex-pdf-utf8-topng ${CONVERT_EXECUTABLE} -strip Åre_vapen_pdf_utf8-1.ppm Åre_vapen_pdf_utf8-1.png)
+if(PDF_COMPARE_VISUALLY)
+  add_test(xetex-pdf-utf8-topng ${CONVERT_EXECUTABLE} -strip Åre_vapen_pdf_utf8-1.ppm Åre_vapen_pdf_utf8-1.png)
+endif()
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
 add_test(xetex-2407-xelatex ${MIKTEX_XELATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")

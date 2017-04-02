@@ -84,7 +84,6 @@ foreach(exe ${script_wrappers} ${nodist_executables})
 endforeach()
 
 set(required_programs
-  convert
   diff
   gzip
   md5sum
@@ -94,6 +93,12 @@ set(required_programs
   touch
   unzip
 )
+
+if(PDF_COMPARE_VISUALLY)
+  list(APPEND required_programs
+    convert
+  )
+endif()
 
 foreach(exe ${required_programs})
   string(TOUPPER "${exe}" EXE)
