@@ -11,10 +11,6 @@ Use the test suite to validate your MiKTeX setup.
 
 * MiKTeX
 
-  The path to the MiKTeX installation directory must not contain
-  spaces.  This is a CMake limitation (and usually only concerns
-  Windows users).
-
 * CMake
 
   The tests are executed by the Make utility.  You use CMake to create
