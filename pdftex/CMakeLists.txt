@@ -42,7 +42,7 @@ if(PDF_COMPARE_VISUALLY)
 endif()
 
 # SF #2371 mathchoice in pdftex broken
-add_test(pdftex-2371-touch ${TOUCH_EXECUTABLE} -d "2010-10-10 10:10:10" timestamp)
+add_test(pdftex-2371-touch ${TOUCH_EXECUTABLE} -t "201010101010.10" timestamp)
 add_test(pdftex-2371-pdftex ${MIKTEX_PDFTEX_EXECUTABLE} -job-time=timestamp -output-format=dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.tex")
 if(PDF_COMPARE_VISUALLY)
   add_test(pdftex-2371-okay ${DIFF_EXECUTABLE} --binary test.dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.dvi")
