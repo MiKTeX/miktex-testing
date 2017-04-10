@@ -24,9 +24,15 @@ project(miktex-testing)
 enable_testing()
 
 option(
+  DVI_COMPARE_VISUALLY
+  "Compare resulting DVI files visually with a test reference."
+  TRUE
+)
+
+option(
   PDF_COMPARE_VISUALLY
   "Compare resulting PDF files visually with a test reference."
-  FALSE
+  TRUE
 )
 
 if(MIKTEX_BINARY_DIR)
@@ -94,7 +100,7 @@ set(required_programs
   unzip
 )
 
-if(PDF_COMPARE_VISUALLY OR (EXISTS ${CHUNKDIB_EXECUTABLE}))
+if(EXISTS ${CHUNKDIB_EXECUTABLE})
   list(APPEND required_programs
     convert
   )
