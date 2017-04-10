@@ -11,6 +11,8 @@ Use the test suite to validate your MiKTeX setup.
 
 * MiKTeX
 
+  MiKTeX must be configured to use A4 paper.
+
 * CMake
 
   The tests are executed by the Make utility.  You use CMake to create
@@ -21,7 +23,6 @@ Use the test suite to validate your MiKTeX setup.
   In addition to MiKTeX, Make and CMake, you will need these
   utilities:
 
-  * convert (ImageMagick)
   * diff
   * gzip
   * md5sum
@@ -39,7 +40,7 @@ invoke CMake, you have to specify the the source directory of the test
 suite.  Like this:
 
     mkdir miktex-test
-	cd miktex-test
+    cd miktex-test
     cmake PATH-TO-MIKTEX-TEST-SOURCE-DIR
 	
 CMake for Windows may require a generator specification.  If you want
