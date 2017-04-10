@@ -18,7 +18,7 @@
 ## USA.
 
 add_test(dvips-sample2e-latex ${MIKTEX_LATEX_EXECUTABLE} --quiet sample2e)
-add_test(dvips-sample2e-dvips ${MIKTEX_DVIPS_EXECUTABLE} sample2e)
+add_test(dvips-sample2e-dvips ${MIKTEX_DVIPS_EXECUTABLE} -t a4 sample2e)
 
 # SF #2336 dvips chokes on graphic files with accents
 if(MIKTEX_NATIVE_WINDOWS)
