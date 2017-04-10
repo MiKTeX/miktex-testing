@@ -32,7 +32,7 @@ if(PDF_COMPARE_VISUALLY)
   add_test(xetex-jpeg-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.ppm.md5)
 endif()
 
-add_test(xetex-fontspec-lmodern ${MIKTEX_XELATEX_EXECUTABLE} "--include-directory=${CMAKE_SOURCE_DIR}/inputs" fontspec-lmodern.tex)
+add_test(xetex-fontspec-lmodern ${MIKTEX_XELATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" fontspec-lmodern.tex)
 add_test(xetex-fontspec-lmodern-toppm ${PDFTOPPM_EXECUTABLE} fontspec-lmodern.pdf fontspec-lmodern)
 if(PDF_COMPARE_VISUALLY)
   add_test(xetex-fontspec-lmodern-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/fontspec-lmodern-1.ppm.md5)
@@ -46,12 +46,12 @@ add_test(xetex-pdf-utf8-toppm ${PDFTOPPM_EXECUTABLE} Åre_vapen_pdf_utf8.pdf År
 #endif()
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
-add_test(xetex-2407-xelatex ${MIKTEX_XELATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
+add_test(xetex-2407-xelatex ${MIKTEX_XELATEX_EXECUTABLE} --quiet "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
 
 # SF #2565 miktex-NAME.exe "-aux-directory=DIR" and "-output-directory=DIR" options suddenly conflict
-add_test(xetex-2565-xelatex ${MIKTEX_XELATEX_EXECUTABLE} -aux-directory=auxfiles -output-directory=outfiles --synctex=1 sample2e.tex)
+add_test(xetex-2565-xelatex ${MIKTEX_XELATEX_EXECUTABLE} --quiet --aux-directory=auxfiles --output-directory=outfiles --synctex=1 sample2e.tex)
 add_test(xetex-2565-auxfiles ${MD5SUM_EXECUTABLE} auxfiles/sample2e.aux auxfiles/sample2e.log)
 add_test(xetex-2565-outfiles ${MD5SUM_EXECUTABLE} outfiles/sample2e.pdf outfiles/sample2e.synctex.gz)
 
 # SF #2563 Incompatibiliy between blindtext and listings(tcolorbox)/hyperref
-add_test(xetex-2563-xelatex ${MIKTEX_XELATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2563-incompatibiliy-between-blindtext-and-listings(tcolorbox)-hyperref/test.tex")
+add_test(xetex-2563-xelatex ${MIKTEX_XELATEX_EXECUTABLE} --quiet "${CMAKE_SOURCE_DIR}/bugs/#2563-incompatibiliy-between-blindtext-and-listings(tcolorbox)-hyperref/test.tex")

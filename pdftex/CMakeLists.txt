@@ -41,19 +41,19 @@ add_test(pdftex-jpeg-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-
 
 # SF #2371 mathchoice in pdftex broken
 add_test(pdftex-2371-touch ${TOUCH_EXECUTABLE} -t "201010101010.10" timestamp)
-add_test(pdftex-2371-pdftex ${MIKTEX_PDFTEX_EXECUTABLE} -job-time=timestamp -output-format=dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.tex")
+add_test(pdftex-2371-pdftex ${MIKTEX_PDFTEX_EXECUTABLE} --quiet -job-time=timestamp -output-format=dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.tex")
 if(DVI_COMPARE_VISUALLY)
   add_test(pdftex-2371-okay ${DIFF_EXECUTABLE} --binary test.dvi "${CMAKE_SOURCE_DIR}/bugs/#2371-mathchoice-in-pdftex-broken/test.dvi")
 endif()
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
-add_test(pdftex-2407-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
+add_test(pdftex-2407-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
 
 # SF #2427 Problem with package epstopdf
-add_test(pdftex-2427-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#2427-problem-with-package-epstopdf" "test.tex")
+add_test(pdftex-2427-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#2427-problem-with-package-epstopdf" "test.tex")
 
 # SF #2493 pdfcsplain broken
-add_test(pdftex-2493-pdfcsplain ${MIKTEX_PDFTEX_EXECUTABLE} "--undump=pdfcsplain" "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "pdfuni-article.tex")
+add_test(pdftex-2493-pdfcsplain ${MIKTEX_PDFTEX_EXECUTABLE} --quiet "--undump=pdfcsplain" "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "pdfuni-article.tex")
 
 # SF #2570 pdflatex doesn't ignore BOM (byte order mark) 
-add_test(pdftex-2570-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "utf8bom.tex")
+add_test(pdftex-2570-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "utf8bom.tex")
