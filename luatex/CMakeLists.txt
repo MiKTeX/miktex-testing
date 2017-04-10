@@ -19,10 +19,7 @@
 
 add_test(luatex-sample2e ${MIKTEX_LUALATEX_EXECUTABLE} sample2e)
 add_test(luatex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
-if(PDF_COMPARE_VISUALLY)
-  add_test(luatex-sample2e-topng ${CONVERT_EXECUTABLE} -strip sample2e-1.ppm sample2e-1.png)
-  add_test(luatex-sample2e-okay ${DIFF_EXECUTABLE} --binary sample2e-1.png ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.png)
-endif()
+add_test(luatex-sample2e-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.ppm.md5)
 
 add_test(
   NAME
@@ -43,10 +40,7 @@ add_test(luatex-spacy-filename ${MIKTEX_LUALATEX_EXECUTABLE} "--include-director
 # SF #2361 Bug in lualatex with ragged2e package and \mathrm fixed 
 add_test(luatex-2361-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2361-bug-in-lualatex-with-ragged2e-package-and-mathrm-fixed/2361.tex")
 add_test(luatex-2361-toppm ${PDFTOPPM_EXECUTABLE} 2361.pdf 2361)
-if(PDF_COMPARE_VISUALLY)
-  add_test(luatex-2361-topng ${CONVERT_EXECUTABLE} -strip 2361-1.ppm 2361-1.png)
-  add_test(luatex-2361-okay ${DIFF_EXECUTABLE} --binary 2361-1.png ${CMAKE_CURRENT_SOURCE_DIR}/2361-1.png)
-endif()
+add_test(luatex-2361-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/2361-1.ppm.md5)
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
 add_test(luatex-2407-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
