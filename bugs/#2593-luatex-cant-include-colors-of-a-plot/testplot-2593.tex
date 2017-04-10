@@ -1,0 +1,14 @@
+\RequirePackage{luatex85}
+\documentclass{standalone}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}
+     \addplot3[contour filled={number=2}] {x*y};
+    \end{axis}
+\end{tikzpicture}
+
+\end{document}

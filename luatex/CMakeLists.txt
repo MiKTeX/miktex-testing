@@ -34,10 +34,11 @@ add_test(
 
 add_test(luatex-spacy-filename ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "a b c")
 
-#add_test(luatex-jpeg ${MIKTEX_LUALATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
-#add_test(luatex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
-#add_test(luatex-jpeg-topng ${CONVERT_EXECUTABLE} -strip jpeg-1.ppm jpeg-1.png)
-#add_test(luatex-jpeg-okay ${DIFF_EXECUTABLE} --binary jpeg-1.png ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.png)
+add_test(luatex-jpeg ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "jpeg.tex")
+add_test(luatex-jpeg-toppm ${PDFTOPPM_EXECUTABLE} jpeg.pdf jpeg)
+if(PDF_COMPARE_VISUALLY)
+  add_test(luatex-jpeg-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/jpeg-1.ppm.md5)
+endif()
 
 # SF #2361 Bug in lualatex with ragged2e package and \mathrm fixed 
 add_test(luatex-2361-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "${CMAKE_SOURCE_DIR}/bugs/#2361-bug-in-lualatex-with-ragged2e-package-and-mathrm-fixed/2361.tex")
@@ -48,3 +49,11 @@ endif()
 
 # SF #2407 lualatex fails with permission denied when trying to input a file open for writing
 add_test(luatex-2407-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "${CMAKE_SOURCE_DIR}/bugs/#2407-lualatex-fails-with-permission-denied-when-trying-to-input-a-file-open-for-writing/test.tex")
+
+# SF #2593 luatex can't include colors of a plot 
+add_test(luatex-2593-testplot ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "${CMAKE_SOURCE_DIR}/bugs/#2593-luatex-cant-include-colors-of-a-plot/testplot-2593.tex")
+add_test(luatex-2593-lualatex ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error "${CMAKE_SOURCE_DIR}/bugs/#2593-luatex-cant-include-colors-of-a-plot/2593.tex")
+add_test(luatex-2593-toppm ${PDFTOPPM_EXECUTABLE} 2593.pdf 2593)
+if(PDF_COMPARE_VISUALLY)
+  add_test(luatex-2593-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/2593-1.ppm.md5)
+endif()
