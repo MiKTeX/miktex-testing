@@ -94,7 +94,7 @@ set(required_programs
   unzip
 )
 
-if(PDF_COMPARE_VISUALLY)
+if(PDF_COMPARE_VISUALLY OR (EXISTS ${CHUNKDIB_EXECUTABLE}))
   list(APPEND required_programs
     convert
   )
