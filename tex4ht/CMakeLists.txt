@@ -30,10 +30,10 @@ configure_file(
 )
 add_test(tex4ht-2350-htlatex ${HTLATEX_EXECUTABLE} mtest "html" " -cunihtf")
 add_test(tex4ht-2350-mtest-pandoc ${PANDOC_EXECUTABLE} mtest.html -o mtest.txt)
-add_test(tex4ht-2350-mtest-okay ${DIFF_EXECUTABLE} mtest.txt ${CMAKE_CURRENT_SOURCE_DIR}/mtest.good.txt)
+add_test(tex4ht-2350-mtest-okay ${DIFF_EXECUTABLE} --strip-trailing-cr mtest.txt ${CMAKE_CURRENT_SOURCE_DIR}/mtest.good.txt)
 add_test(tex4ht-2350-make4ht ${MAKE4HT_EXECUTABLE} test "xhtml,charset=utf-8" " -cunihtf -utf8")
 add_test(tex4ht-2350-test-pandoc ${PANDOC_EXECUTABLE} test.html -o test.txt)
-add_test(tex4ht-2350-test-okay ${DIFF_EXECUTABLE} test.txt ${CMAKE_CURRENT_SOURCE_DIR}/test.good.txt)
+add_test(tex4ht-2350-test-okay ${DIFF_EXECUTABLE} --strip-trailing-cr test.txt ${CMAKE_CURRENT_SOURCE_DIR}/test.good.txt)
 
 # SF #2505 htlatex.exe removes quotes
 add_test(tex4ht-2505-htlatex ${HTLATEX_EXECUTABLE} mtest "xhtml,ooffice" "ooffice/! -cmozhtf" "-coo -cvalidate")
