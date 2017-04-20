@@ -55,3 +55,6 @@ add_test(xetex-2565-outfiles ${MD5SUM_EXECUTABLE} outfiles/sample2e.pdf outfiles
 
 # SF #2563 Incompatibiliy between blindtext and listings(tcolorbox)/hyperref
 add_test(xetex-2563-xelatex ${MIKTEX_XELATEX_EXECUTABLE} --quiet "${CMAKE_SOURCE_DIR}/bugs/#2563-incompatibiliy-between-blindtext-and-listings(tcolorbox)-hyperref/test.tex")
+
+# SF #2597 \write18 causing fatal error in xetex and xelatex after MiKTeX 2.9.6300 update
+add_test(xetex-2597-xelatex ${MIKTEX_XELATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "write18")
