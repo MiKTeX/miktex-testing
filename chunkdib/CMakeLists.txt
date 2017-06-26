@@ -26,4 +26,6 @@ add_test(
   COMMAND ${CHUNKDIB_EXECUTABLE} ../sample2e1.bmp
   WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/chunks"
 )
+#TODO:
+# convert -metric NCC ${CMAKE_CURRENT_BINARY_DIR}/chunks/sample2e1-1-1.bmp ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-300-chunks/sample2e1-1-1.bmp null:
 add_test(chunk-dib-diff ${DIFF_EXECUTABLE} "${CMAKE_CURRENT_BINARY_DIR}/chunks" "${CMAKE_CURRENT_SOURCE_DIR}/sample2e-300-chunks")

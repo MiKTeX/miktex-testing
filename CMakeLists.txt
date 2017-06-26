@@ -77,9 +77,10 @@ set(script_wrappers
   make4ht
 )
 
-set(nodist_executables
-  chunkdib
-)
+#TODO:
+#set(nodist_executables
+#  chunkdib
+#)
 
 foreach(exe ${script_wrappers} ${nodist_executables})
   string(TOUPPER "${exe}" EXE)
