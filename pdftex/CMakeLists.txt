@@ -62,3 +62,6 @@ add_test(pdftex-2570-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-d
 # TODO: grep for poppler error message: "Unknown filter 'DCTDecode'"
 add_test(pdftex-2605-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#2605-unknown-filter-dctdecode" "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "pdfmitjpg.tex")
 add_test(pdftex-2605-pdflatex-2 ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#2605-unknown-filter-dctdecode" "test.tex")
+
+# GH #20 pdfLaTeX crashes on file inclusion
+add_test(pdftex-20-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#20-pdflatex-crashes-on-file-inclusion" "test.tex")
