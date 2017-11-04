@@ -94,7 +94,6 @@ set(required_programs
   diff
   gzip
   md5sum
-  pandoc
   pdfinfo
   pdftoppm
   touch

@@ -26,7 +26,6 @@ Use the test suite to validate your MiKTeX setup.
   * diff
   * gzip
   * md5sum
-  * pandoc
   * pdfinfo
   * pdftoppm
   * touch
