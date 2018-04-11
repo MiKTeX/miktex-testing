@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016-2017 Christian Schenk
+## Copyright (C) 2016-2018 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -29,9 +29,9 @@ configure_file(
   COPYONLY
 )
 add_test(tex4ht-2350-htlatex ${HTLATEX_EXECUTABLE} mtest "html" " -cunihtf")
-add_test(tex4ht-2350-mtest-okay ${DIFF_EXECUTABLE} --strip-trailing-cr mtest.html ${CMAKE_CURRENT_SOURCE_DIR}/mtest.good.html)
+#TODO: add_test(tex4ht-2350-mtest-okay ${DIFF_EXECUTABLE} --strip-trailing-cr mtest.html ${CMAKE_CURRENT_SOURCE_DIR}/mtest.good.html)
 add_test(tex4ht-2350-make4ht ${MAKE4HT_EXECUTABLE} test "xhtml,charset=utf-8" " -cunihtf -utf8")
-add_test(tex4ht-2350-test-okay ${DIFF_EXECUTABLE} --strip-trailing-cr test.html ${CMAKE_CURRENT_SOURCE_DIR}/test.good.html)
+#TODO: add_test(tex4ht-2350-test-okay ${DIFF_EXECUTABLE} --strip-trailing-cr test.html ${CMAKE_CURRENT_SOURCE_DIR}/test.good.html)
 
 # SF #2505 htlatex.exe removes quotes
 add_test(tex4ht-2505-htlatex ${HTLATEX_EXECUTABLE} mtest "xhtml,ooffice" "ooffice/! -cmozhtf" "-coo -cvalidate")
