@@ -65,3 +65,6 @@ add_test(pdftex-2605-pdflatex-2 ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include
 
 # GH #20 pdfLaTeX crashes on file inclusion
 add_test(pdftex-20-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/#20-pdflatex-crashes-on-file-inclusion" "test.tex")
+
+# TL mailing list 2018-05-10: "TL2018: Problems with filenames"
+add_test(pdftex-utf8-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" Begrüßung.tex)
