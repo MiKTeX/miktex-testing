@@ -18,6 +18,7 @@ matrix:
       before_script: ./travis-ci/osx/before_script.sh
       script: ./travis-ci/osx/script.sh
       after_failure: ./travis-ci/osx/after_failure.sh
+    - os: osx
       osx_image: xcode8
       before_install: ./travis-ci/osx/before_install.sh
       before_script: ./travis-ci/osx/before_script.sh
