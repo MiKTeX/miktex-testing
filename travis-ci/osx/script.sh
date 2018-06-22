@@ -29,8 +29,8 @@ sudomiktex() {
     return $status
 }
 
-miktexsetup finish
-initexmf --set-config-value=[MPM]AutoInstall=1
-mpm --package-level=basic --upgrade
+~/bin/miktexsetup finish
+~/bin/initexmf --set-config-value=[MPM]AutoInstall=1
+~/bin/mpm --package-level=basic --upgrade
 
 rm -fr "${miktex_home}"
