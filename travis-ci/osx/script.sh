@@ -33,4 +33,7 @@ sudomiktex() {
 "${miktex_bin}/initexmf" --set-config-value=[MPM]AutoInstall=1
 "${miktex_bin}/mpm" --package-level=basic --upgrade
 
-rm -fr "${miktex_home}"
+cmake -DMIKTEX_BINARY_DIR="$miktex_bin" ..
+
+#export MIKTEX_TRACE=error
+make test
