@@ -3,12 +3,12 @@
 set -e
 set -v
 
-curl --location --output miktex-2.9.6700-1-darwin-x86_64.dmg https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/miktex-2.9.6700-1-darwin-x86_64.dmg
-echo Y | hdiutil attach miktex-2.9.6700-1-darwin-x86_64.dmg
-ls -l /Volumes/miktex-2.9.6700-1-darwin-x86_64
+curl --location --output miktex-2.9.6715-1-darwin-x86_64.dmg http://download.miktex.org/tmp/6A8D5E99E29F48209C541EFAFD88F0C5/darwin-x86_64/miktex-2.9.6715-1-darwin-x86_64.dmg
+echo Y | hdiutil attach miktex-2.9.6715-1-darwin-x86_64.dmg
+ls -l /Volumes/miktex-2.9.6715-1-darwin-x86_64
 
 
-miktex_bin="/Volumes/miktex-2.9.6700-1-darwin-x86_64/MiKTeX Console.app/Contents/bin"
+miktex_bin="/Volumes/miktex-2.9.6715-1-darwin-x86_64/MiKTeX Console.app/Contents/bin"
 miktex_home="$HOME/Library/Application Support/MiKTeX"
 
 sudomiktex() {
