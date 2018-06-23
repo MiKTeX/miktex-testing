@@ -33,6 +33,10 @@ sudomiktex() {
 "${miktex_bin}/initexmf" --set-config-value=[MPM]AutoInstall=1
 "${miktex_bin}/mpm" --package-level=basic --upgrade
 
+cd "${TRAVIS_BUILD_DIR}"
+mkdir build
+cd build
+
 cmake -DMIKTEX_BINARY_DIR="$miktex_bin" ..
 
 #export MIKTEX_TRACE=error
