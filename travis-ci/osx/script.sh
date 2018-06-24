@@ -4,15 +4,22 @@ set -e
 set -v
 
 version=2.9.6715
+dmg_name=miktex-$version-1-darwin-x86_64
+dmg=$dmg_name.dmg
+#url=https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/$dmg
+url=http://download.miktex.org/tmp/6A8D5E99E29F48209C541EFAFD88F0C5/$dmg
 
-curl --location --output miktex-$version-1-darwin-x86_64.dmg https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/miktex-$version-1-darwin-x86_64.dmg
-echo Y | hdiutil attach miktex-$version-1-darwin-x86_64.dmg
+curl --location --output $dmg $url
+echo Y | hdiutil attach $dmg
 
-miktex_bin="/Volumes/miktex-$version-1-darwin-x86_64/MiKTeX Console.app/Contents/bin"
+contents="/Volumes/$dmg_name/MiKTeX Console.app/Contents"
+miktex_bin="$contents/bin"
 
 "${miktex_bin}/miktexsetup" finish
 "${miktex_bin}/initexmf" --set-config-value=[MPM]AutoInstall=1
 "${miktex_bin}/mpm" --package-level=basic --upgrade
+
+"$contents/MacOS/MiKTeX Console" --version
 
 cd "${TRAVIS_BUILD_DIR}"
 mkdir build
