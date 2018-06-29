@@ -3,11 +3,10 @@
 set -e
 set -v
 
-version=2.9.6715
+version=2.9.6730
 dmg_name=miktex-$version-1-darwin-x86_64
 dmg=$dmg_name.dmg
-#url=https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/$dmg
-url=http://download.miktex.org/tmp/6A8D5E99E29F48209C541EFAFD88F0C5/$dmg
+url=https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/$dmg
 
 curl --location --output $dmg $url
 echo Y | hdiutil attach $dmg
