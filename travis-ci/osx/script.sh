@@ -3,15 +3,12 @@
 set -e
 set -v
 
-version=2.9.6730
-dmg_name=miktex-$version-1-darwin-x86_64
-dmg=$dmg_name.dmg
-url=https://miktex.org/download/ctan/systems/win32/miktex/setup/darwin-x86_64/$dmg
+url=https://miktex.org/download/mac/miktex-x64.dmg
 
-curl --location --output $dmg $url
-echo Y | hdiutil attach $dmg
+curl --location --output miktex.dmg $url
+echo Y | hdiutil attach miktex.dmg
 
-contents="/Volumes/$dmg_name/MiKTeX Console.app/Contents"
+contents="/Volumes/miktex*/MiKTeX Console.app/Contents"
 miktex_bin="$contents/bin"
 
 "${miktex_bin}/miktexsetup" finish
