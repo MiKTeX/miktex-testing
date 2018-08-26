@@ -5,7 +5,7 @@ set -v
 
 url=https://miktex.org/download/mac/miktex-x64.dmg
 
-curl --location --output miktex.dmg $url
+curl --insecure --location --output miktex.dmg $url
 echo Y | hdiutil attach miktex.dmg
 
 contents="/Volumes/miktex*/MiKTeX Console.app/Contents"
