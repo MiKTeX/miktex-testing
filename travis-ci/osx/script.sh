@@ -8,7 +8,7 @@ url=http://miktex.org/download/mac/miktex-x64.dmg
 curl --insecure --location --output miktex.dmg $url
 echo Y | hdiutil attach miktex.dmg
 
-MIKTEX_MILESTONE=6840
+MIKTEX_MILESTONE=7000
 
 contents="/volumes/MiKTeX/MiKTeX Console.app/Contents"
 miktex_bin="$contents/bin"
