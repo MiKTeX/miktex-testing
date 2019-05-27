@@ -22,7 +22,7 @@ configure_file(
   example.mp
   COPYONLY
 )
-add_test(mpost-example ${MIKTEX_MPOST_EXECUTABLE} example.mp)
+add_test(mpost-example ${MIKTEX_MPOST_EXECUTABLE} -alias=mpost -tex=miktex-tex example.mp)
 
 # SF #2449 MetaPost won't use text
 configure_file(
@@ -30,4 +30,4 @@ configure_file(
   test.mp
   COPYONLY
 )
-add_test(mpost-2449-mpost ${MIKTEX_MPOST_EXECUTABLE} test.mp)
+add_test(mpost-2449-mpost ${MIKTEX_MPOST_EXECUTABLE} -alias=mpost -tex=miktex-tex test.mp)
