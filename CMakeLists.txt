@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016-2017 Christian Schenk
+## Copyright (C) 2016-2019 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -135,3 +135,4 @@ endif()
 add_subdirectory(bibtex)
 add_subdirectory(synctex)
 add_subdirectory(epstopdf)
+add_subdirectory(mpost)
