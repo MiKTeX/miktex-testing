@@ -50,6 +50,7 @@ set(miktex_executables
   miktex-dvips
   miktex-dvisvgm
   miktex-epstopdf
+  miktex-harflatex
   miktex-latex
   miktex-lualatex
   miktex-makeindex
@@ -136,3 +137,4 @@ add_subdirectory(bibtex)
 add_subdirectory(synctex)
 add_subdirectory(epstopdf)
 add_subdirectory(mpost)
+add_subdirectory(harftex)
