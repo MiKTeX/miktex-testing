@@ -17,8 +17,8 @@
 ## Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307,
 ## USA.
 
-add_test(harftex-sample2e ${MIKTEX_HARFLATEX_EXECUTABLE} --halt-on-error sample2e)
-add_test(harftex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
+add_test(luahbtex-sample2e ${MIKTEX_LUAHBLATEX_EXECUTABLE} --halt-on-error sample2e)
+add_test(luahbtex-sample2e-toppm ${PDFTOPPM_EXECUTABLE} sample2e.pdf sample2e)
 if(PDF_COMPARE_VISUALLY)
-  add_test(harftex-sample2e-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.ppm.md5)
+  add_test(luahbtex-sample2e-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/sample2e-1.ppm.md5)
 endif()
