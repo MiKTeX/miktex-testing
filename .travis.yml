@@ -4,6 +4,12 @@ env:
   global:
     - MAKEFLAGS="-j 2"
 
+addons:
+  homebrew:
+    packages:
+      - ghostscript
+      - md5sha1sum
+
 matrix:
   include:
     - os: osx
