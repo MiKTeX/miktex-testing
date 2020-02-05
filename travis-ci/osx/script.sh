@@ -11,9 +11,9 @@ echo Y | hdiutil attach miktex.dmg
 contents="/volumes/MiKTeX/MiKTeX Console.app/Contents"
 miktex_bin="$contents/bin"
 
-"${miktex_bin}/miktexsetup" finish
-"${miktex_bin}/initexmf" --set-config-value=[MPM]AutoInstall=1
-"${miktex_bin}/mpm" --package-level=basic --upgrade
+"${miktex_bin}/miktexsetup" --verbose finish
+"${miktex_bin}/initexmf" --verbose --set-config-value=[MPM]AutoInstall=1
+"${miktex_bin}/mpm" --verbose --package-level=basic --upgrade
 
 "$contents/MacOS/MiKTeX Console" --version
 
