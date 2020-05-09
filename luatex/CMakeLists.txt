@@ -58,5 +58,5 @@ if(PDF_COMPARE_VISUALLY)
   add_test(luatex-2593-okay ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/2593-1.ppm.md5)
 endif()
 
-add_test(luatex-write18 ${MIKTEX_LUALATEX_EXECUTABLE} --quiet --enable-write18 "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "shellesc")
+add_test(luatex-write18 ${MIKTEX_LUALATEX_EXECUTABLE} --halt-on-error --enable-write18 "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "shellesc")
 add_test(luatex-hello-diff ${DIFF_EXECUTABLE} --strip-trailing-cr hello.txt ${CMAKE_SOURCE_DIR}/refoutputs/hello.txt)
