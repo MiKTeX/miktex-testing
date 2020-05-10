@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016-2017 Christian Schenk
+## Copyright (C) 2016-2020 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -24,10 +24,6 @@ if(PDF_COMPARE_VISUALLY)
 endif()
 
 add_test(pdftex-spacy-filename ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" --recorder "a b c")
-
-if(EXISTS "${CMAKE_SOURCE_DIR}/inputs/ABC~1.TEX")
-  add_test(pdftex-8-3-filename ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "ABC~1.TEX")
-endif()
 
 # SF #1940 tex: wrong \jobname if filename contains a dot 
 add_test(pdftex-filename-with-dot ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" "sample.2e.tex")
