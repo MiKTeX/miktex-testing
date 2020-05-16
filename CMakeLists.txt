@@ -118,6 +118,13 @@ foreach(exe ${required_programs})
   endif()
 endforeach()
 
+set(EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES "${CMAKE_BINARY_DIR}/extra long path with spaces")
+foreach(n RANGE 1 20)
+  set(EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/extra long path with spaces ${n}")
+endforeach()
+
+make_directory("${EXTRA_LONG_DIRECTORY_PATH}")
+
 add_test(initexmf-report ${INITEXMF_EXECUTABLE} --report)
 
 add_subdirectory(makeindex)

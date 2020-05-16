@@ -1,6 +1,6 @@
 ## CMakeLists.txt:
 ##
-## Copyright (C) 2016-2017 Christian Schenk
+## Copyright (C) 2016-2020 Christian Schenk
 ## 
 ## This file is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published
@@ -20,7 +20,8 @@
 # SF #2410 bibtex buffer size exceeded
 configure_file(
   "${CMAKE_SOURCE_DIR}/bugs/#2410-bibtex-buffer-size-exceeded/utf8-test.aux"
-  utf8-test.aux
+  "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/bibtex/utf8-test.aux"
   COPYONLY
 )
-add_test(bibtex-2410 ${MIKTEX_BIBTEX_EXECUTABLE} utf8-test)
+add_test(bibtex-2410 ${MIKTEX_BIBTEX_EXECUTABLE} "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/bibtex/utf8-test.aux")
+add_test(bibtex-explicit-bib ${MIKTEX_BIBTEX_EXECUTABLE} explicit-bib)
