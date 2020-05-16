@@ -24,4 +24,10 @@ configure_file(
   COPYONLY
 )
 add_test(bibtex-2410 ${MIKTEX_BIBTEX_EXECUTABLE} "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/bibtex/utf8-test.aux")
-add_test(bibtex-explicit-bib ${MIKTEX_BIBTEX_EXECUTABLE} explicit-bib)
+
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/explicit-bib.aux"
+  "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/bibtex/explicit-bib.aux"
+  COPYONLY
+)
+add_test(bibtex-explicit-bib ${MIKTEX_BIBTEX_EXECUTABLE} "${EXTRA_LONG_DIRECTORY_PATH_WITH_SPACES}/bibtex/explicit-bib.aux")
