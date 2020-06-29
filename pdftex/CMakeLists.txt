@@ -64,3 +64,6 @@ add_test(pdftex-20-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-dir
 
 # TL mailing list 2018-05-10: "TL2018: Problems with filenames"
 add_test(pdftex-utf8-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/inputs" Begrüßung.tex)
+
+# https://github.com/MiKTeX/miktex/issues/568
+add_test(pdftex-github-568-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/github-568" "test.tex")
