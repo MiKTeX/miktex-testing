@@ -68,5 +68,7 @@ add_test(pdftex-utf8-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-d
 # https://github.com/MiKTeX/miktex/issues/568
 add_test(pdftex-github-568-pdflatex ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/github-568" "test.tex")
 
-# https://github.com/MiKTeX/miktex/issues/668
-add_test(pdftex-tilde-expansion ${CMAKE_COMMAND} -E env HOME=${CMAKE_SOURCE_DIR}/bugs/github-668/home USERPROFILE=${CMAKE_SOURCE_DIR}/bugs/github-668/home ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/github-668" "test.tex")
+if(MIKTEX_NATIVE_WINDOWS)
+  # https://github.com/MiKTeX/miktex/issues/668
+  add_test(pdftex-tilde-expansion ${CMAKE_COMMAND} -E env USERPROFILE=${CMAKE_SOURCE_DIR}/bugs/github-668/home ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/github-668" "test.tex")
+endif()
