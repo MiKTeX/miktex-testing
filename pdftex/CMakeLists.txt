@@ -72,3 +72,10 @@ if(MIKTEX_NATIVE_WINDOWS)
   # https://github.com/MiKTeX/miktex/issues/668
   add_test(pdftex-tilde-expansion ${CMAKE_COMMAND} -E env USERPROFILE=${CMAKE_SOURCE_DIR}/bugs/github-668/home ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "--include-directory=${CMAKE_SOURCE_DIR}/bugs/github-668" "test.tex")
 endif()
+
+# https://github.com/MiKTeX/miktex/issues/672
+add_test(
+  NAME              pdftex-672-maketfm
+  COMMAND           ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "test.tex"
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bugs/github-672
+ )
