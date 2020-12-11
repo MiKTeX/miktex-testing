@@ -74,8 +74,14 @@ if(MIKTEX_NATIVE_WINDOWS)
 endif()
 
 # https://github.com/MiKTeX/miktex/issues/672
-add_test(
-  NAME              pdftex-672-maketfm
-  COMMAND           ${MIKTEX_PDFLATEX_EXECUTABLE} --quiet "test.tex"
-  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/bugs/github-672
- )
+configure_file(
+  "${CMAKE_SOURCE_DIR}/bugs/github-672/test.tex"
+  test-672.tex
+  COPYONLY
+)
+configure_file(
+  "${CMAKE_SOURCE_DIR}/bugs/github-672/cee.mf"
+  cee.mf
+  COPYONLY
+)
+add_test(pdftex-672-maketfm ${MIKTEX_LATEX_EXECUTABLE} --quiet "test-672.tex")
